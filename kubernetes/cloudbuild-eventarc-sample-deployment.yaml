@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudbuild-eventarc-listener-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudbuild-eventarc-listener
+  template:
+    metadata:
+      labels:
+        app: cloudbuild-eventarc-listener
+    spec:
+      containers:
+        - name: cloudbuild-eventarc-listener
+          image: cloudbuild-eventarc-listener-image
+          ports:
+            - containerPort: 8080

@@ -1,0 +1,15 @@
+apiVersion: skaffold/v3alpha1
+kind: Config
+metadata:
+  name: cloudbuild-eventarc-sample
+manifests:
+  rawYaml:
+    - kubernetes/cloudbuild-eventarc-sample-deployment.yaml
+    - kubernetes/cloudbuild-eventarc-sample-service.yaml
+build:
+  artifacts:
+    - image: cloudbuild-eventarc-listener-image
+      jib:
+        type: gradle
+deploy:
+  kubectl: { }
